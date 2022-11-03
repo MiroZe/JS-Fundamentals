@@ -1,14 +1,14 @@
-function reverseInPlace(arr) {
-  
+function reverseInPlace(stringArr) {
+  let stringArrL = stringArr.length;
+  let printLine = "";
 
-  for (let i = 0; i < arr.length / 2; i++) {
-    let temp = arr[i];
-    let previousIndex = arr.length - 1 - i;
-    arr[i] = arr[previousIndex];
-    arr[previousIndex] = temp
-
+  for (let i = stringArrL - 1; i >= 0; i--) {
+    if (i === 0) {
+      printLine += stringArr[i];
+    } else {
+      printLine += `${stringArr[i]} `;
+    }
   }
-  console.log(arr.join(' '));
-  
+  console.log(printLine);
 }
-reverseInPlace(["33", "123", "0", "dd"]);
+reverseInPlace(["abc", "def", "hig", "klm", "nop"]);

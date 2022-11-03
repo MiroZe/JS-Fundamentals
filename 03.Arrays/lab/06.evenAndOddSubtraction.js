@@ -2,14 +2,17 @@ function evenAndOddSubtraction(arr) {
   let evenSum = 0;
   let oddSum = 0;
 
-  for (let number of arr) {
-    if (number % 2 === 0) {
-      evenSum += number;
+  for (let elements of arr) {
+    let currentElem = Number(elements);
+
+    if (currentElem % 2 === 0) {
+      evenSum += currentElem;
     } else {
-      oddSum += number;
+      oddSum += currentElem;
     }
   }
-  let difference = evenSum - oddSum;
-  console.log(difference);
+
+  let different = (a, b) => a - b;
+  console.log(different(evenSum, oddSum));
 }
-evenAndOddSubtraction([2, 4, 6, 8, 10]);
+evenAndOddSubtraction([3, 5, 7, 9]);
