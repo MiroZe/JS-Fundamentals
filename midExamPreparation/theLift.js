@@ -1,31 +1,44 @@
-function theLift(arr) {
-  let waitingPeople = Number(arr.shift());
-  let liftStatus = arr[0].split(" ");
-  let seatsCapacity = 4;
-  let resultArr = [];
+function lift(input) {
+  let waitingPeople = Number(input.shift());
+  let wagonStatus = input[0].split(" ").map((x) => Number(x));
+  const maxCapacity = 4;
 
-  for (let i = 0; i < liftStatus.length; i++) {
-    let emptySeats = Number(liftStatus[i]);
-    let diff = seatsCapacity - emptySeats;
-    if (waitingPeople <= 0) {
-      break;
+  for (let i = 0; i < wagonStatus.length; i++) {
+    let currentWagon = wagonStatus[i];
+    if ( currentWagon < maxCapacity) {
+        if (currentWagon + waitingPeople <= maxCapacity) {
+            wagonStatus[i] = currentWagon + waitingPeople;
+          waitingPeople = 0;
+        
+        } else if (currentWagon + waitingPeople > maxCapacity) {
+          waitingPeople -= maxCapacity - currentWagon;
+          wagonStatus[i] = maxCapacity;
+        }
+
     }
-    if (waitingPeople > seatsCapacity) {
-      resultArr[i] = seatsCapacity;
-    } else if(waitingPeople < seatsCapacity && waitingPeople > 0) {
-      resultArr[i] = diff;
-    }
-
-    waitingPeople -= diff;
+    
   }
-  if (waitingPeople <= 0) {
-    console.log("The lift has empty spots!");
-  } else {
-    console.log(
-      `There isn't enough space! ${waitingPeople} people in a queue!`
-    );
-  }
-
-  console.log(resultArr.join(" "));
+  
+let isTrainFull = true;
+for(const elem of wagonStatus) {
+ if (elem < maxCapacity) {
+    isTrainFull = false;
+    break;
+ } 
 }
-theLift(["20","0 2 0"]);
+if(isTrainFull && waitingPeople > 0) {
+    console.log(`There isn't enough space! ${waitingPeople} people in a queue! \n${wagonStatus.join(' ')}`);
+} else if (isTrainFull && waitingPeople === 0 ){
+    console.log(wagonStatus.join(' '));
+    
+} else {
+    console.log(`The lift has empty spots! \n${wagonStatus.join(' ')}`);
+}
+}
+lift([
+    "20",
+    "0 2 0"
+   ]
+   
+   
+   );
