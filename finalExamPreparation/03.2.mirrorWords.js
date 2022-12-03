@@ -26,7 +26,5 @@ if (result.length === 0 ) {
     console.log(`The mirror words are:\n${result.join(', ')}`);
 }
 
-
-
 }
 mirrorWords([ '#lol#lol# @#God@@doG@# #abC@@Cba# @Xyu@#uyX#' ])
